@@ -2,6 +2,11 @@
 const express = require ('express')
 const app = express ()
 const mongoose = require('mongoose')
+const apiModels = require('./models/apiModels')
+
+
+
+
 
 
 
@@ -13,6 +18,33 @@ app.use(
 )
 
 app.use(express.json())
+
+//rotas da api
+
+app.post('apiModels',async (req, res) => {
+    //req.body
+    const {categoria, descricao, titulo, preco, image} = req.body
+
+    const apiModels = {
+        categoria,
+        descricao,
+        titulo,
+        preco,
+        image
+    }
+
+    try{
+        await apiModels.create(apiModels)
+        res.status(201).json({'produto criado com sucesso'}) 
+        
+        res.status
+
+    }catch (error) {
+     res.status(500).json({ error: 'error' }) 
+    }
+
+})
+
 
 
 // rota inicial / endepoint
@@ -31,13 +63,20 @@ const DB_PASSWORD = encodeURIComponent('Rebeca')
 
 mongoose 
     .connect(
-        'mongodb+srv://DB_USER:DB_PASSWORD@apicluster2.eovpxpb.mongodb.net/?retryWrites=true&w=majority'
+        'mongodb+srv://miguel:dOadyVlT7MjBqm19@apicluster2.eovpxpb.mongodb.net/?retryWrites=true&w=majority'
     )
     .then(() => {
-        console.log("conectamos ao MongoDB!")
+
+        console.log("conectamos com o MongoDB!")
         app.listen(3000)
+
+    
     })
     .catch((err) => console.log(err))
 
 // entregar uma porta
+
 app.listen(3000)
+console.log("conectamos com o MongoDB!")
+
+
