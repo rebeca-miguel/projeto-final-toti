@@ -5,11 +5,6 @@ const mongoose = require('mongoose')
 const apiModels = require('./models/apiModels')
 
 
-
-
-
-
-
 // forma de ler JSON
 app.use(
     express.urlencoded({
@@ -21,26 +16,27 @@ app.use(express.json())
 
 //rotas da api
 
-app.post('apiModels',async (req, res) => {
+app.post('/apiModels',async (req, res) => {
     //req.body
-    const {categoria, descricao, titulo, preco, image} = req.body
+    const {categoria, descricao,nome, preco,} = req.body
 
     const apiModels = {
         categoria,
         descricao,
-        titulo,
-        preco,
-        image
+        nome,
+        preco  
     }
 
     try{
-        await apiModels.create(apiModels)
-        res.status(201).json({'produto criado com sucesso'}) 
         
-        res.status
+         await apiModels.create(apiModels)
+       
+        res.status(201).json({message: 'produto criado com sucesso'}) 
+        
+        
 
-    }catch (error) {
-     res.status(500).json({ error: 'error' }) 
+    } catch (error) {
+       res.status(500).json({ error: error }) 
     }
 
 })

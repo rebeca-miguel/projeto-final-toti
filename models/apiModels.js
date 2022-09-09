@@ -14,12 +14,11 @@ const apiModels = mongoose.model('apiMOdels',{
         required: true
      },
      preco:{
-        type: Number,
+        type: parseFloat,
         required:true
      },
-     imageUrl:{
-        type: String
-     }
+     
+     
     
 })
 
