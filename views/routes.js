@@ -1,3 +1,3 @@
 const express = require ('express')
 const router = express.Router()
-router.post(' /aipModels/create.apiModels')
+router.post('../cardapio/create.cardapioModels')

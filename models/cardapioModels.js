@@ -1,28 +1,27 @@
 const mongoose = require('mongoose')
+const cardapio = mongoose.model('cardapioModels',{
 
-const apiModels = mongoose.model('apiMOdels',{
-    categoria:{
+   categoria:{
         type:String,
         required: true
      },
-     titulo:{
+   titulo:{
         type: String,
         required: true
      },
-     descricao:{
+   descricao:{
         type: String,
         required: true
      },
-     preco:{
+   preco:{
         type: parseFloat,
         required:true
      },
      
-     
-    
+      
 })
 
-module.exports = apiModels
+module.exports = cardapioModels
 
 
 

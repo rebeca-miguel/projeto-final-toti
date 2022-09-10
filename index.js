@@ -2,7 +2,7 @@
 const express = require ('express')
 const app = express ()
 const mongoose = require('mongoose')
-const apiModels = require('./models/apiModels')
+const  cardapio = require('../models/cardapioModels')
 
 
 // forma de ler JSON
@@ -16,11 +16,11 @@ app.use(express.json())
 
 //rotas da api
 
-app.post('/apiModels',async (req, res) => {
+app.post('/cardapioModels',async (req, res) => {
     //req.body
     const {categoria, descricao,nome, preco,} = req.body
 
-    const apiModels = {
+    const cardapio = {
         categoria,
         descricao,
         nome,
@@ -29,33 +29,29 @@ app.post('/apiModels',async (req, res) => {
 
     try{
         
-         await apiModels.create(apiModels)
-       
+        cardapioModels.create(cardapioModels)
+
         res.status(201).json({message: 'produto criado com sucesso'}) 
         
         
 
     } catch (error) {
-       res.status(500).json({ error: error }) 
+        res.status(500).json({ error: error }) 
     }
 
 })
 
-
-
-// rota inicial / endepoint
-app.get('/',(req, res)=>{
+//rota inicial / endepoint
+    app.get('/',(req, res)=>{
     //mostrar requisição
     res.json({message: 'oi Express'})
 })
 
 const DB_USER = 'miguel'
-const DB_PASSWORD = encodeURIComponent('Rebeca')
+const DB_PASSWORD = encodeURIComponent('dOadyVlT7MjBqm19')
 //dOadyVlT7MjBqm19
 
 //mongodb+srv://miguel:dOadyVlT7MjBqm19@apicluster2.eovpxpb.mongodb.net/?retryWrites=true&w=majority
-
-
 
 mongoose 
     .connect(
@@ -66,7 +62,6 @@ mongoose
         console.log("conectamos com o MongoDB!")
         app.listen(3000)
 
-    
     })
     .catch((err) => console.log(err))
 
