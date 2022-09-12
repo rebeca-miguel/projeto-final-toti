@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
-const Cardapio = mongoose.model('Cardapio',{
+const CardapioSchema = new mongoose.Schema({
 
    categoria:{
         type:String,
         required: true
      },
-   nome:{
+   titulo:{
         type: String,
         required: true
      },
@@ -21,7 +21,7 @@ const Cardapio = mongoose.model('Cardapio',{
       
 })
 
-module.exports = Cardapio;
+module.exports = mongoose.model("Cardapio", CardapioSchema)
 
 
 

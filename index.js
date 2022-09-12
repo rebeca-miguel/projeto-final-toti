@@ -4,7 +4,7 @@ const app = express ()
 const mongoose = require('mongoose');
 const Cardapio = require('./models/Cardapio')
 
-
+const card = require('./routes/routesCardapio')
 //forma de ler um json
 
 app.use(
@@ -14,26 +14,29 @@ app.use(
 )
 
 app.use(express.json())
+app.use("/cadastrar", card)
 
 //rotas da API
 
-app.post('./cardapio', async(req, res) => {
+app.post('/cardapio', async (req, res) => {
     //req.body
-    const {categoria, nome, descicao, preco, require} = req.body
-    //(categoria:alimento, nome:Pizza, descrição: calabresa, preço: 36,require:true)
+    const {categoria, name, descicao, preco, required} = req.body
+    
+
+    //(categoria:alimento, name:Pizza, descrição: calabresa, preço: 36, require:true)
     
     
     if(!cardapio) {
-        res.status(422).json({error: 'O cardapio foi inserido com suceso'})
+        res.status(422).json({ error: 'O cardapio foi inserido com suceso' })
     }
 
     //criar atributo
     const cardapio = {
         categoria,
-        nome,
-        descricao,
+        name,
+        description,
         preco,
-        require
+        required
     }
     try{
         //criando dados
@@ -47,28 +50,28 @@ app.post('./cardapio', async(req, res) => {
 })
 
 //rota inicial
-// app.get('/',(req, res) => {
-//     //mostrat rota
-//     res.json({message: 'olá express!'})
-// })
+app.get('/',(req, res) => {
+    //mostrat rota
+    res.json({message: 'olá express!'})
+})
 
-// //qD7WgblQMMmZy3F1
+//qD7WgblQMMmZy3F1
 
-// //mongodb+srv://Rebeca:qD7WgblQMMmZy3F1@apicluster3.qvdwwhg.mongodb.net/bancodaapi?retryWrites=true&w=majority
+//mongodb+srv://Rebeca:qD7WgblQMMmZy3F1@apicluster3.qvdwwhg.mongodb.net/bancodaapi?retryWrites=true&w=majority
 
-// //entregar a porta
-// const DB_USER = 'Rebeca'
-// const DB_PASSWORD = encodeURIComponent('qD7WgblQMMmZy3F1')
+//entregar a porta
+const DB_USER = 'Rebeca'
+const DB_PASSWORD = encodeURIComponent('qD7WgblQMMmZy3F1')
 
-// mongoose
-// .connect(
-// `mongodb+srv://${DB_USER}:${DB_PASSWORD}@apicluster3.qvdwwhg.mongodb.net/bancodaapi?retryWrites=true&w=majority`,
-// )
-// .then(() => {
-//     console.log('conectamos com o Mongo!')
-//     app.listen(3000)
-// })
-// .catch((err) => console.log(err))
+mongoose
+.connect(
+`mongodb+srv://${DB_USER}:${DB_PASSWORD}@apicluster3.qvdwwhg.mongodb.net/bancodaapi?retryWrites=true&w=majority`,
+)
+.then(() => {
+    console.log('conectamos com o Mongo!')
+    app.listen(3000)
+})
+.catch((err) => console.log(err))
 
 
 
