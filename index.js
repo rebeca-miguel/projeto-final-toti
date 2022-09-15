@@ -3,9 +3,16 @@ const express = require ('express')
 const app = express ()
 const mongoose = require('mongoose');
 const Cardapio = require('./models/Cardapio')
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+
+
 
 const card = require('./routes/routesCardapio')
 //forma de ler um json
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(
     express.urlencoded({
@@ -33,7 +40,7 @@ app.post('/cardapio', async (req, res) => {
     //criar atributo
     const cardapio = {
         categoria,
-        name,
+        titulo,
         description,
         preco,
         required

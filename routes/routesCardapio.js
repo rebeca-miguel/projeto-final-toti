@@ -96,7 +96,7 @@ router.delete('/:id', async (req, res) => {
 //     //criar atributo
 //     const cardapio = {
 //         categoria,
-//         nome,
+//         titulo,
 //         descricao,
 //         preco,
 //         require

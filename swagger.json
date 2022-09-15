@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.1",
+    "info":{
+        "title": "Cardapio",
+        "description": "Documentacao de cardapio api",
+        "version": "1.0.0"
+    },
+
+    "basePath": "/",
+    "component": {
+        "securitySchema": {
+                "bearerAuth": {
+                "type": "http",
+                "schema": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+        
+    },
+    
+    "paths": {
+
+        "/card/cardapio.findTitulo": {
+            "get": {
+                "parameters": {
+                    "in": "query",
+                    "titulo": "titulo",
+                    "type": "string"
+                },
+
+                "responses": {
+
+                }
+            }
+        },
+
+        "/cardapio": {
+            "post": {
+                "tags": ["Cardapio"],
+                "security": {{
+                    "bearerAuth": []
+                }},
+                "requestBody": {
+                    "content": {
+                        "aplicacao/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "categoria": {
+                                        "type":"string"
+                                    },
+                                    "titulo":{
+                                        "type": "string"
+                                    },
+                                    "descricao": {
+                                        "type": "string"
+                                    },
+                                    "preco": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "401": {
+                "descricao": 
+                "err.message"   
+                },
+                "200": {
+                    "descricao": "Ok"
+                }
+            }
+        }
+    }
+    
+}
